@@ -6,8 +6,8 @@ interface TabBarProps {
 }
 
 const TABS: { id: GroupTab; label: string }[] = [
-  { id: 'attendance', label: 'Attendance' },
-  { id: 'homework', label: 'Homework' },
+  { id: 'attendance', label: 'Davomat' },
+  { id: 'homework', label: 'Uy vazifasi' },
 ]
 
 export function TabBar({ active, onChange }: TabBarProps) {

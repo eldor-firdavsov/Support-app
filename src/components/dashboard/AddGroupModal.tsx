@@ -28,14 +28,14 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
 
     const trimmed = name.trim().toUpperCase()
     if (!trimmed) {
-      setError('Group name is required.')
+      setError('Guruh nomi kiritilishi shart.')
       return
     }
 
     // Validate format: A or B followed by one or more digits (e.g., A6, B12)
     const regex = /^[AB]\d+$/
     if (!regex.test(trimmed)) {
-      setError('Group name must start with A or B followed by a number (e.g., A11, B4).')
+      setError('Guruh nomi A yoki B harfi va raqamdan iborat bo\'lishi kerak (masalan: A11, B4).')
       return
     }
 
@@ -44,7 +44,7 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
       (g) => g.name.toUpperCase() === trimmed && g.status === 'active'
     )
     if (isDuplicate) {
-      setError('A group with this name already exists.')
+      setError('Bunday nomli guruh allaqachon mavjud.')
       return
     }
 
@@ -53,7 +53,7 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
       const newGroup = await createGroup(trimmed)
       onAdded(newGroup)
     } catch {
-      setError('Could not create group. Please check your connection and try again.')
+      setError('Guruh yaratib bo\'lmadi. Aloqani tekshiring va qaytadan urinib ko\'ring.')
     } finally {
       setSaving(false)
     }
@@ -72,7 +72,7 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
         className="w-full max-w-sm overflow-hidden rounded-md bg-surface shadow-lg"
       >
         <div className="ledger-row flex items-center justify-between px-4 py-3">
-          <h2 className="text-sm font-semibold text-ink">Add new group</h2>
+          <h2 className="text-sm font-semibold text-ink">Yangi guruh qo'shish</h2>
           <button
             type="button"
             onClick={onClose}
@@ -87,7 +87,7 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
           <div className="space-y-1.5">
             <label htmlFor="group-name" className="text-xs font-semibold text-ink-muted">
-              Group Name
+              Guruh nomi
             </label>
             <input
               id="group-name"
@@ -115,14 +115,14 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
               onClick={onClose}
               className="rounded-sm px-3 py-1.5 text-sm text-ink-muted hover:text-ink"
             >
-              Cancel
+              Bekor qilish
             </button>
             <button
               type="submit"
               disabled={saving || !name.trim()}
               className="rounded-sm bg-accent px-4 py-1.5 text-sm font-medium text-accent-ink transition-colors hover:bg-accent/90 disabled:opacity-50"
             >
-              {saving ? 'Creating…' : 'Create'}
+              {saving ? 'Yaratilmoqda…' : 'Yaratish'}
             </button>
           </div>
         </form>

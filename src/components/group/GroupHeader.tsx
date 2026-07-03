@@ -14,7 +14,7 @@ export function GroupHeader({ groupName, onManageStudents }: GroupHeaderProps) {
       <button
         type="button"
         onClick={() => navigate('/')}
-        aria-label="Back to dashboard"
+        aria-label="Bosh sahifaga qaytish"
         className="flex h-8 w-8 items-center justify-center rounded-sm text-ink-muted hover:bg-accent-soft hover:text-ink transition-colors border border-line cursor-pointer"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -26,7 +26,7 @@ export function GroupHeader({ groupName, onManageStudents }: GroupHeaderProps) {
         onClick={onManageStudents}
         className="text-xs bg-accent-soft text-accent px-2.5 py-1.5 rounded-sm font-semibold transition-colors hover:bg-accent hover:text-accent-ink cursor-pointer"
       >
-        Manage Students
+        O'quvchilarni boshqarish
       </button>
     </header>
   )

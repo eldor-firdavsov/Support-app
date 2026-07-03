@@ -14,7 +14,7 @@ export function AbsenceFollowUpTab() {
       const data = await fetchAbsenceAlerts()
       setAlerts(data)
     } catch {
-      setError('Could not load absence follow-up alerts.')
+      setError('Davomat ogohlantirishlarini yuklab bo\'lmadi.')
     } finally {
       setLoading(false)
     }
@@ -35,15 +35,15 @@ export function AbsenceFollowUpTab() {
         <AlertTriangle className="h-5 w-5 text-absent shrink-0 mt-0.5" />
         <div className="space-y-1">
           <h3 className="text-xs font-bold text-absent uppercase tracking-wider">
-            Absence Action List
+            Davomat harakatlari ro'yxati
           </h3>
           <p className="text-xs text-ink-muted leading-relaxed">
-            The students below have missed <strong>2 or more consecutive classes</strong>. Contact them and their parents immediately.
+            Quyidagi o'quvchilar <strong>2 yoki undan ko'p ketma-ket darsni</strong> qoldirgan. Ular va ularning ota-onalari bilan zudlik bilan bog'laning.
           </p>
         </div>
       </div>
 
-      {loading && <p className="py-12 text-center text-sm text-ink-muted">Checking attendance registry...</p>}
+      {loading && <p className="py-12 text-center text-sm text-ink-muted">Davomat ro'yxati tekshirilmoqda...</p>}
       {error && <p className="py-12 text-center text-sm text-absent">{error}</p>}
 
       {!loading && !error && (
@@ -51,8 +51,8 @@ export function AbsenceFollowUpTab() {
           {alerts.length === 0 ? (
             <div className="rounded-md border border-line bg-surface p-12 text-center text-ink-muted">
               <Check className="mx-auto h-8 w-8 text-present mb-2" />
-              <h4 className="text-xs font-bold uppercase tracking-wider text-ink">All caught up!</h4>
-              <p className="text-xs text-ink-muted mt-1">No active students have missed 2 or more consecutive classes.</p>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-ink">Hammasi yaxshi!</h4>
+              <p className="text-xs text-ink-muted mt-1">Hech bir faol o'quvchi ketma-ket 2 yoki undan ko'p darsni qoldirmagan.</p>
             </div>
           ) : (
             alerts.map((alert) => {
@@ -66,16 +66,16 @@ export function AbsenceFollowUpTab() {
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-2.5">
                       <span className="text-[10px] bg-absent/10 text-absent border border-absent/20 px-2 py-0.5 rounded-sm font-bold uppercase tracking-wider">
-                        Absent {consecutiveAbsences} sessions
+                        {consecutiveAbsences} dars qoldirdi
                       </span>
                       <h4 className="text-sm font-bold text-ink">{student.full_name}</h4>
                       <span className="text-xs text-ink-muted">
-                        Group: <strong className="text-ink">{groupName}</strong>
+                        Guruh: <strong className="text-ink">{groupName}</strong>
                       </span>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-1.5 text-xs text-ink-muted">
-                      <span>Dates missed:</span>
+                      <span>Qoldirilgan sanalar:</span>
                       {lastDates.map((date) => (
                         <span key={date} className="bg-accent-soft px-2 py-0.5 rounded-sm font-mono text-[10px] text-ink border border-line">
                           {date}
@@ -92,11 +92,11 @@ export function AbsenceFollowUpTab() {
                         className="flex items-center gap-2 rounded-sm border border-line bg-accent-soft/20 px-4 py-2 text-xs text-ink hover:bg-accent-soft transition-colors cursor-pointer"
                       >
                         <Phone className="h-3.5 w-3.5 text-accent" />
-                        <span>Student: <strong className="font-mono">{student.contact}</strong></span>
+                        <span>O'quvchi: <strong className="font-mono">{student.contact}</strong></span>
                       </a>
                     ) : (
                       <div className="rounded-sm border border-line bg-line/20 px-4 py-2 text-xs text-ink-muted">
-                        <span>Student: No contact</span>
+                        <span>O'quvchi: Telefon yo'q</span>
                       </div>
                     )}
 
@@ -107,11 +107,11 @@ export function AbsenceFollowUpTab() {
                         className="flex items-center gap-2 rounded-sm border border-line bg-accent-soft/20 px-4 py-2 text-xs text-ink hover:bg-accent-soft transition-colors cursor-pointer"
                       >
                         <Phone className="h-3.5 w-3.5 text-accent" />
-                        <span>Parent: <strong className="font-mono">{student.parent_contact}</strong></span>
+                        <span>Ota-ona: <strong className="font-mono">{student.parent_contact}</strong></span>
                       </a>
                     ) : (
                       <div className="rounded-sm border border-line bg-line/20 px-4 py-2 text-xs text-ink-muted">
-                        <span>Parent: No contact</span>
+                        <span>Ota-ona: Telefon yo'q</span>
                       </div>
                     )}
                   </div>

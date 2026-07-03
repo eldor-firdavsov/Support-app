@@ -40,7 +40,7 @@ export function StudentRegistryTab() {
       setStudents(studentsData)
       setGroups(groupsData)
     } catch {
-      setError('Could not load student directory.')
+      setError('O\'quvchilar ro\'yxatini yuklab bo\'lmadi.')
     } finally {
       setLoading(false)
     }
@@ -75,13 +75,8 @@ export function StudentRegistryTab() {
       student.contact?.toLowerCase().includes(searchLower)
 
     const matchesGroup = selectedGroup === 'all' || student.group_id === selectedGroup
-    
-    // Status filter matches: if 'all', we don't filter. If 'active' or others:
-    const matchesStatus =
-      selectedStatus === 'all' ||
-      student.status.toLowerCase() === selectedStatus.toLowerCase()
 
-    return matchesSearch && matchesGroup && matchesStatus
+    return matchesSearch && matchesGroup
   })
 
   const toggleExpand = (studentId: string) => {
@@ -117,7 +112,7 @@ export function StudentRegistryTab() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full rounded-sm border border-line-strong bg-surface pl-9 pr-4 py-2 text-xs text-ink placeholder:text-ink-muted focus:border-accent focus:outline-hidden"
-              placeholder="Search by name, ID, group or email..."
+              placeholder="Ism, ID yoki guruh bo'yicha qidirish..."
             />
           </div>
 
@@ -127,7 +122,7 @@ export function StudentRegistryTab() {
             onChange={(e) => setSelectedGroup(e.target.value)}
             className="rounded-sm border border-line-strong bg-surface px-3 py-2 text-xs text-ink focus:border-accent focus:outline-hidden"
           >
-            <option value="all">All Groups</option>
+            <option value="all">Barcha guruhlar</option>
             {groups.map((g) => (
               <option key={g.id} value={g.id}>
                 {g.name}
@@ -135,19 +130,7 @@ export function StudentRegistryTab() {
             ))}
           </select>
 
-          {/* Status dropdown */}
-          <select
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
-            className="rounded-sm border border-line-strong bg-surface px-3 py-2 text-xs text-ink focus:border-accent focus:outline-hidden"
-          >
-            <option value="all">All Statuses</option>
-            <option value="active">Active</option>
-            <option value="Left">Left</option>
-            <option value="On hold">On Hold</option>
-            <option value="Completed">Completed</option>
-            <option value="Finished">Finished</option>
-          </select>
+
         </div>
 
         <button
@@ -156,11 +139,11 @@ export function StudentRegistryTab() {
           className="flex items-center gap-1.5 rounded-sm bg-accent px-4 py-2 text-xs font-bold text-accent-ink shadow-sm transition-all hover:bg-accent/90 hover:shadow active:scale-95 cursor-pointer"
         >
           <Plus className="h-4 w-4" />
-          Add Student
+          O'quvchi qo'shish
         </button>
       </div>
 
-      {loading && <p className="py-12 text-center text-sm text-ink-muted">Loading students...</p>}
+      {loading && <p className="py-12 text-center text-sm text-ink-muted">O'quvchilar yuklanmoqda...</p>}
       {error && <p className="py-12 text-center text-sm text-absent">{error}</p>}
 
       {!loading && !error && (
@@ -170,20 +153,19 @@ export function StudentRegistryTab() {
             <table className="w-full border-collapse text-left text-xs">
               <thead>
                 <tr className="border-b border-line bg-accent-soft/30 font-bold uppercase tracking-wider text-ink-muted">
-                  <th className="py-3 px-4 w-12">No/ID</th>
-                  <th className="py-3 px-4">Name</th>
-                  <th className="py-3 px-4">Group</th>
-                  <th className="py-3 px-4">Contact</th>
-                  <th className="py-3 px-4 w-32">Status</th>
-                  <th className="py-3 px-4 w-16 text-center">Details</th>
-                  <th className="py-3 px-4 w-16 text-center">Edit</th>
+                  <th className="py-3 px-4 w-12">№/ID</th>
+                  <th className="py-3 px-4">Ism</th>
+                  <th className="py-3 px-4">Guruh</th>
+                  <th className="py-3 px-4">Telefon</th>
+                  <th className="py-3 px-4 w-16 text-center">Batafsil</th>
+                  <th className="py-3 px-4 w-16 text-center">Tahrir</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-line">
                 {filteredStudents.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="py-8 text-center text-ink-muted">
-                      No students found matching current search/filter.
+                    <td colSpan={6} className="py-8 text-center text-ink-muted">
+                      Qidiruv/filtr bo'yicha o'quvchilar topilmadi.
                     </td>
                   </tr>
                 ) : (
@@ -202,16 +184,11 @@ export function StudentRegistryTab() {
                           <td className="py-3 px-4">
                             <span className="flex items-center gap-1 text-ink font-semibold">
                               <GraduationCap className="h-3.5 w-3.5 text-accent" />
-                              {student.groups?.name || 'Unassigned'}
+                              {student.groups?.name || 'Guruhsiz'}
                             </span>
                           </td>
                           <td className="py-3 px-4 text-ink-muted font-mono">
                             {student.contact || '-'}
-                          </td>
-                          <td className="py-3 px-4">
-                            <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider ${getStatusColor(student.status)}`}>
-                              {student.status}
-                            </span>
                           </td>
                           <td className="py-3 px-4 text-center">
                             <button
@@ -240,20 +217,20 @@ export function StudentRegistryTab() {
                         {/* Expandable Info Panel */}
                         {isExpanded && (
                           <tr className="bg-accent-soft/10">
-                            <td colSpan={7} className="p-4 border-l-2 border-accent">
+                            <td colSpan={6} className="p-4 border-l-2 border-accent">
                               <div className="flex flex-wrap gap-8 text-xs">
                                 <div>
-                                  <strong className="block font-bold text-accent uppercase tracking-wider mb-1">Student Contact</strong>
+                                  <strong className="block font-bold text-accent uppercase tracking-wider mb-1">O'quvchi telefoni</strong>
                                   <p className="flex items-center gap-1.5 text-ink font-mono">
                                     <Phone className="h-3.5 w-3.5 text-accent" />
-                                    <span>{student.contact || 'No contact provided'}</span>
+                                    <span>{student.contact || 'Telefon ko\'rsatilmagan'}</span>
                                   </p>
                                 </div>
                                 <div>
-                                  <strong className="block font-bold text-accent uppercase tracking-wider mb-1">Parent Contact</strong>
+                                  <strong className="block font-bold text-accent uppercase tracking-wider mb-1">Ota-ona telefoni</strong>
                                   <p className="flex items-center gap-1.5 text-ink font-mono">
                                     <Phone className="h-3.5 w-3.5 text-accent" />
-                                    <span>{student.parent_contact || 'No parent contact provided'}</span>
+                                    <span>{student.parent_contact || 'Ota-ona telefoni ko\'rsatilmagan'}</span>
                                   </p>
                                 </div>
                               </div>
@@ -272,7 +249,7 @@ export function StudentRegistryTab() {
           <div className="md:hidden divide-y divide-line">
             {filteredStudents.length === 0 ? (
               <div className="p-8 text-center text-ink-muted text-xs">
-                No students found matching current filters.
+                Qidiruv/filtr bo'yicha o'quvchilar topilmadi.
               </div>
             ) : (
               filteredStudents.map((student) => {
@@ -285,13 +262,10 @@ export function StudentRegistryTab() {
                         <h4 className="text-xs font-bold text-ink">{student.full_name}</h4>
                         <span className="flex items-center gap-1 text-[10px] text-accent font-semibold uppercase tracking-wider">
                           <GraduationCap className="h-3.5 w-3.5" />
-                          {student.groups?.name || 'Unassigned'}
+                          {student.groups?.name || 'Guruhsiz'}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className={`inline-block rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${getStatusColor(student.status)}`}>
-                          {student.status}
-                        </span>
                         <button
                           type="button"
                           onClick={() => setEditingStudent(student)}
@@ -303,13 +277,13 @@ export function StudentRegistryTab() {
                     </div>
 
                     <div className="flex justify-between items-center text-[11px] text-ink-muted">
-                      <span>Phone: <strong className="text-ink font-mono">{student.contact || '-'}</strong></span>
+                      <span>Telefon: <strong className="text-ink font-mono">{student.contact || '-'}</strong></span>
                       <button
                         type="button"
                         onClick={() => toggleExpand(student.id)}
                         className="flex items-center gap-1 text-accent font-bold cursor-pointer"
                       >
-                        <span>{isExpanded ? 'Hide Info' : 'Show Details'}</span>
+                        <span>{isExpanded ? 'Yashirish' : 'Batafsil'}</span>
                         {isExpanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
                       </button>
                     </div>
@@ -317,11 +291,11 @@ export function StudentRegistryTab() {
                     {isExpanded && (
                       <div className="pt-3 border-t border-dashed border-line space-y-2 text-[11px] text-ink-muted">
                         <div>
-                          <strong className="text-accent uppercase tracking-wider text-[9px] block mb-0.5">Student Contact</strong>
+                          <strong className="text-accent uppercase tracking-wider text-[9px] block mb-0.5">O'quvchi telefoni</strong>
                           <div className="text-ink font-mono">{student.contact || '-'}</div>
                         </div>
                         <div>
-                          <strong className="text-accent uppercase tracking-wider text-[9px] block mb-0.5">Parent Contact</strong>
+                          <strong className="text-accent uppercase tracking-wider text-[9px] block mb-0.5">Ota-ona telefoni</strong>
                           <div className="text-ink font-mono">{student.parent_contact || '-'}</div>
                         </div>
                       </div>

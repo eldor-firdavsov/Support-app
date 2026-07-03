@@ -15,8 +15,8 @@ export function GroupList({ groups, month, date }: GroupListProps) {
     return (
       <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
         <BookOpen className="mb-3 h-10 w-10 text-ink-muted" />
-        <h3 className="text-sm font-semibold text-ink">No groups yet</h3>
-        <p className="mt-1 text-xs text-ink-muted">Click "+ Add Group" to create your first class.</p>
+        <h3 className="text-sm font-semibold text-ink">Hali guruhlar yo'q</h3>
+        <p className="mt-1 text-xs text-ink-muted">"+ Guruh qo'shish" tugmasini bosib birinchi guruhingizni yarating.</p>
       </div>
     )
   }
@@ -41,7 +41,7 @@ export function GroupList({ groups, month, date }: GroupListProps) {
               </h3>
               <p className="text-xs text-ink-muted flex items-center gap-1.5">
                 <Users className="h-3.5 w-3.5" />
-                <span>{group.studentCount ?? 0} active students</span>
+                <span>{group.studentCount ?? 0} faol o'quvchilar</span>
               </p>
             </div>
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-soft text-accent group-hover:bg-accent group-hover:text-accent-ink transition-all">
@@ -54,7 +54,7 @@ export function GroupList({ groups, month, date }: GroupListProps) {
               A/B Group
             </span>
             <span className="text-xs text-accent font-medium group-hover:underline">
-              Enter Register
+              Jurnalni ochish
             </span>
           </div>
         </div>

@@ -53,7 +53,7 @@ export function ManageStudentsModal({ groupId, onClose }: ManageStudentsModalPro
         className="max-h-[85vh] w-full max-w-sm overflow-y-auto rounded-md bg-surface shadow-lg"
       >
         <div className="ledger-row flex items-center justify-between px-4 py-3">
-          <h2 className="text-sm font-semibold text-ink">Manage students</h2>
+          <h2 className="text-sm font-semibold text-ink">O'quvchilarni boshqarish</h2>
           <button
             type="button"
             onClick={onClose}
@@ -65,7 +65,7 @@ export function ManageStudentsModal({ groupId, onClose }: ManageStudentsModalPro
         </div>
 
 
-        {loading && <p className="px-4 py-6 text-sm text-ink-muted">Loading students…</p>}
+        {loading && <p className="px-4 py-6 text-sm text-ink-muted">O'quvchilar yuklanmoqda…</p>}
 
         {loadError && (
           <div className="px-4 py-6">
@@ -77,7 +77,7 @@ export function ManageStudentsModal({ groupId, onClose }: ManageStudentsModalPro
               onClick={() => void reload()}
               className="text-sm text-accent underline underline-offset-2"
             >
-              Try again
+              Qayta urinib ko'ring
             </button>
           </div>
         )}
@@ -85,7 +85,7 @@ export function ManageStudentsModal({ groupId, onClose }: ManageStudentsModalPro
         {!loading && !loadError && (
           <>
             {students.length === 0 ? (
-              <p className="px-4 py-6 text-sm text-ink-muted">No students yet. Add the first one below.</p>
+              <p className="px-4 py-6 text-sm text-ink-muted">Hali o'quvchilar yo'q. Quyida birinchisini qo'shing.</p>
             ) : (
               <ul>
                 {students.map((student) => (
@@ -107,8 +107,8 @@ export function ManageStudentsModal({ groupId, onClose }: ManageStudentsModalPro
                   setNewName(e.target.value)
                   clearActionError()
                 }}
-                placeholder="Full name"
-                aria-label="New student full name"
+                placeholder="To'liq ismi"
+                aria-label="Yangi o'quvchining to'liq ismi"
                 className="min-w-0 flex-1 rounded-sm border border-line-strong bg-surface px-2.5 py-1.5 text-sm text-ink outline-none focus-visible:border-accent"
               />
               <button
@@ -116,7 +116,7 @@ export function ManageStudentsModal({ groupId, onClose }: ManageStudentsModalPro
                 disabled={adding || newName.trim() === ''}
                 className="shrink-0 rounded-sm bg-accent px-3 py-1.5 text-sm font-medium text-accent-ink disabled:opacity-50"
               >
-                Add
+                Qo'shish
               </button>
             </form>
 
@@ -165,26 +165,17 @@ function StudentListItem({ student, onSave, onDelete }: StudentListItemProps) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          aria-label="Full name"
+          aria-label="To'liq ismi"
           className="w-full rounded-sm border border-line-strong bg-surface px-2.5 py-1.5 text-sm text-ink outline-none focus-visible:border-accent"
         />
-        <div className="flex items-center justify-between gap-2">
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value as EntityStatus)}
-            aria-label="Status"
-            className="rounded-sm border border-line-strong bg-surface px-2 py-1 text-xs text-ink outline-none focus-visible:border-accent"
-          >
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
+        <div className="flex items-center justify-end gap-2">
           <div className="flex gap-2">
             <button
               type="button"
               onClick={handleCancel}
               className="text-xs text-ink-muted hover:text-ink"
             >
-              Cancel
+              Bekor qilish
             </button>
             <button
               type="button"
@@ -192,7 +183,7 @@ function StudentListItem({ student, onSave, onDelete }: StudentListItemProps) {
               disabled={saving || name.trim() === ''}
               className="rounded-sm bg-accent px-2.5 py-1 text-xs font-medium text-accent-ink disabled:opacity-50"
             >
-              {saving ? 'Saving…' : 'Save'}
+              {saving ? 'Saqlanmoqda…' : 'Saqlash'}
             </button>
           </div>
         </div>
@@ -204,8 +195,7 @@ function StudentListItem({ student, onSave, onDelete }: StudentListItemProps) {
     return (
       <li className="ledger-row flex items-center justify-between gap-2 px-4 py-3">
         <p className="text-xs text-ink">
-          Delete <span className="font-medium">{student.full_name}</span> and all their attendance
-          and homework history? This can't be undone.
+          <span className="font-medium">{student.full_name}</span>ni va uning barcha davomat va uy vazifasi tarixini o'chirish. Bu amalni bekor qilib bo'lmaydi.
         </p>
         <div className="flex shrink-0 gap-2">
           <button
@@ -213,14 +203,14 @@ function StudentListItem({ student, onSave, onDelete }: StudentListItemProps) {
             onClick={() => setConfirmingDelete(false)}
             className="text-xs text-ink-muted hover:text-ink"
           >
-            Cancel
+            Bekor qilish
           </button>
           <button
             type="button"
             onClick={() => void onDelete(student.id)}
             className="rounded-sm bg-absent px-2.5 py-1 text-xs font-medium text-accent-ink"
           >
-            Delete
+            O'chirish
           </button>
         </div>
       </li>
@@ -233,20 +223,20 @@ function StudentListItem({ student, onSave, onDelete }: StudentListItemProps) {
         <span className="text-[15px] text-ink">{student.full_name}</span>
         {student.status === 'inactive' && (
           <span className="rounded-sm bg-accent-soft px-1.5 py-0.5 text-[11px] font-medium text-ink-muted">
-            Inactive
+            Nofaol
           </span>
         )}
       </div>
       <div className="flex gap-3 text-xs">
         <button type="button" onClick={() => setEditing(true)} className="text-accent hover:underline">
-          Edit
+          Tahrirlash
         </button>
         <button
           type="button"
           onClick={() => setConfirmingDelete(true)}
           className="text-ink-muted hover:text-absent"
         >
-          Delete
+          O'chirish
         </button>
       </div>
     </li>

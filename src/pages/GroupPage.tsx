@@ -49,13 +49,13 @@ export function GroupPage() {
       .then((data) => {
         if (cancelled) return
         if (!data) {
-          setError('This group could not be found.')
+          setError('Bu guruhni topib bo\'lmadi.')
         } else {
           setGroup(data)
         }
       })
       .catch(() => {
-        if (!cancelled) setError('Could not load this group. Check your connection.')
+        if (!cancelled) setError('Bu guruhni yuklab bo\'lmadi. Aloqani tekshiring.')
       })
       .finally(() => {
         if (!cancelled) setLoading(false)
@@ -95,21 +95,21 @@ export function GroupPage() {
   }
 
   if (loading) {
-    return <p className="px-4 py-6 text-sm text-ink-muted">Loading…</p>
+    return <p className="px-4 py-6 text-sm text-ink-muted">Yuklanmoqda…</p>
   }
 
   if (error || !group || !groupId) {
     return (
       <div className="px-4 py-6">
         <p role="alert" className="mb-3 text-sm text-absent">
-          {error ?? 'This group could not be found.'}
+          {error ?? 'Bu guruhni topib bo\'lmadi.'}
         </p>
         <button
           type="button"
           onClick={() => navigate('/')}
           className="text-sm text-accent underline underline-offset-2"
         >
-          Back to dashboard
+          Bosh sahifaga qaytish
         </button>
       </div>
     )
@@ -119,7 +119,7 @@ export function GroupPage() {
     <div className="mx-auto min-h-screen max-w-6xl px-4 py-8 md:py-12">
       {/* Top Navigation & Actions */}
       <div className="flex flex-col justify-between gap-4 border-b border-line pb-6 md:flex-row md:items-end">
-        <GroupHeader groupName={`Group ${group.name}`} onManageStudents={() => setManagingStudents(true)} />
+        <GroupHeader groupName={`Guruh ${group.name}`} onManageStudents={() => setManagingStudents(true)} />
         
         <div className="flex items-center gap-3">
           <MonthSelector value={month} onChange={handleMonthChange} />

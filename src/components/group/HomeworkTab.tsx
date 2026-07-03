@@ -15,7 +15,7 @@ export function HomeworkTab({ groupId, date }: HomeworkTabProps) {
   )
 
   if (loading) {
-    return <p className="px-4 py-6 text-sm text-ink-muted">Loading homework…</p>
+    return <p className="px-4 py-6 text-sm text-ink-muted">Uy vazifasi yuklanmoqda…</p>
   }
 
   if (loadError) {
@@ -29,7 +29,7 @@ export function HomeworkTab({ groupId, date }: HomeworkTabProps) {
           onClick={() => void reload()}
           className="text-sm text-accent underline underline-offset-2"
         >
-          Try again
+          Qayta urinib ko'ring
         </button>
       </div>
     )
@@ -38,7 +38,7 @@ export function HomeworkTab({ groupId, date }: HomeworkTabProps) {
   if (students.length === 0) {
     return (
       <p className="px-4 py-6 text-sm text-ink-muted">
-        No active students in this group yet. Add students from the group menu.
+        Bu guruhda hali faol o'quvchilar yo'q. Guruh menyusidan o'quvchilar qo'shing.
       </p>
     )
   }
@@ -46,8 +46,8 @@ export function HomeworkTab({ groupId, date }: HomeworkTabProps) {
   return (
     <div>
       <div className="ledger-row flex items-center justify-between px-4 py-2 text-xs font-medium text-ink-muted">
-        <span>Student</span>
-        <span>Score</span>
+        <span>O'quvchi</span>
+        <span>Baho</span>
       </div>
       {students.map((student) => (
         <StudentRow key={student.id} name={student.full_name}>

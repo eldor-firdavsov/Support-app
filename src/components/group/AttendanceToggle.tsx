@@ -43,7 +43,7 @@ export function AttendanceToggle({ value, saveStatus, onChange }: AttendanceTogg
 
       {saveStatus === 'error' && (
         <span role="alert" className="text-xs text-absent">
-          Not saved — tap to retry
+          Saqlanmadi — bosib qayta urinib ko'ring
         </span>
       )}
     </div>
@@ -53,10 +53,10 @@ export function AttendanceToggle({ value, saveStatus, onChange }: AttendanceTogg
 function optionFullLabel(id: AttendanceStatus): string {
   switch (id) {
     case '+':
-      return 'Present'
+      return 'Keldi'
     case '-':
-      return 'Absent'
+      return 'Kelmadi'
     case 'n/a':
-      return 'Reason'
+      return 'Sababli'
   }
 }

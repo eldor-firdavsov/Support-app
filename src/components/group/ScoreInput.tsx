@@ -36,7 +36,7 @@ export function ScoreInput({ value, saveStatus, onSave }: ScoreInputProps) {
         type="text"
         inputMode="numeric"
         pattern="[0-9]*"
-        aria-label="Homework score, 0 to 100"
+        aria-label="Uy vazifasi bahosi, 0 dan 100 gacha"
         value={draft}
         onChange={(e) => setDraft(sanitizeScoreDraft(e.target.value))}
         onKeyDown={handleKeyDown}
@@ -46,7 +46,7 @@ export function ScoreInput({ value, saveStatus, onSave }: ScoreInputProps) {
 
       {saveStatus === 'error' && (
         <span role="alert" className="text-xs text-absent">
-          Not saved
+          Saqlanmadi
         </span>
       )}
     </div>

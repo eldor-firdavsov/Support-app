@@ -13,7 +13,6 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
   const [formData, setFormData] = useState<Partial<Student>>({
     full_name: student?.full_name || '',
     group_id: student?.group_id || (groups[0]?.id || ''),
-    status: student?.status || 'active',
     student_number: student?.student_number || '',
     contact: student?.contact || '',
     parent_contact: student?.parent_contact || '',
@@ -30,11 +29,11 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formData.full_name?.trim()) {
-      setError('Student name is required.')
+      setError('O\'quvchi ismi kiritilishi shart.')
       return
     }
     if (!formData.group_id) {
-      setError('Please select a group.')
+      setError('Iltimos guruhni tanlang.')
       return
     }
 
@@ -44,7 +43,7 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
       await onSave(formData)
       onClose()
     } catch (err: any) {
-      setError(err?.message || 'Failed to save student details.')
+      setError(err?.message || 'O\'quvchi ma\'lumotlarini saqlab bo\'lmadi.')
     } finally {
       setSaving(false)
     }
@@ -56,7 +55,7 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
         {/* Header */}
         <div className="flex items-center justify-between border-b border-line px-6 py-4 bg-accent-soft/30">
           <h2 className="text-sm font-bold uppercase tracking-wider text-ink">
-            {student ? 'Edit Student Profile' : 'Add New Student'}
+            {student ? 'O\'quvchini tahrirlash' : 'Yangi o\'quvchi qo\'shish'}
           </h2>
           <button
             type="button"
@@ -76,40 +75,40 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
           )}
 
           <div>
-            <label className="block text-xs font-bold text-ink-muted mb-1">Full Name *</label>
+            <label className="block text-xs font-bold text-ink-muted mb-1">To'liq ismi *</label>
             <input
               type="text"
               name="full_name"
               value={formData.full_name}
               onChange={handleChange}
               className="w-full rounded-sm border border-line-strong bg-surface px-3 py-1.5 text-xs text-ink placeholder:text-ink-muted focus:border-accent focus:outline-hidden"
-              placeholder="e.g. Alimov Husniddin"
+              placeholder="masalan: Alimov Husniddin"
               required
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-ink-muted mb-1">Student ID / Number</label>
+              <label className="block text-xs font-bold text-ink-muted mb-1">O'quvchi raqami / ID</label>
               <input
                 type="text"
                 name="student_number"
                 value={formData.student_number}
                 onChange={handleChange}
                 className="w-full rounded-sm border border-line-strong bg-surface px-3 py-1.5 text-xs text-ink placeholder:text-ink-muted focus:border-accent focus:outline-hidden"
-                placeholder="e.g. 5"
+                placeholder="masalan: 5"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-ink-muted mb-1">Assigned Group *</label>
+              <label className="block text-xs font-bold text-ink-muted mb-1">Guruh *</label>
               <select
                 name="group_id"
                 value={formData.group_id}
                 onChange={handleChange}
                 className="w-full rounded-sm border border-line-strong bg-surface px-3 py-1.5 text-xs text-ink focus:border-accent focus:outline-hidden"
               >
-                <option value="">Select a Group</option>
+                <option value="">Guruhni tanlang</option>
                 {groups.map((g) => (
                   <option key={g.id} value={g.id}>
                     {g.name}
@@ -121,44 +120,28 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-ink-muted mb-1">Status</label>
-              <select
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                className="w-full rounded-sm border border-line-strong bg-surface px-3 py-1.5 text-xs text-ink focus:border-accent focus:outline-hidden"
-              >
-                <option value="active">Active</option>
-                <option value="Left">Left</option>
-                <option value="On hold">On hold</option>
-                <option value="Completed">Completed</option>
-                <option value="Finished">Finished</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-ink-muted mb-1">Student Contact</label>
+              <label className="block text-xs font-bold text-ink-muted mb-1">O'quvchi telefoni</label>
               <input
                 type="text"
                 name="contact"
                 value={formData.contact}
                 onChange={handleChange}
                 className="w-full rounded-sm border border-line-strong bg-surface px-3 py-1.5 text-xs text-ink placeholder:text-ink-muted focus:border-accent focus:outline-hidden"
-                placeholder="e.g. 91 709 03 82"
+                placeholder="masalan: 91 709 03 82"
               />
             </div>
-          </div>
 
-          <div>
-            <label className="block text-xs font-bold text-ink-muted mb-1">Parent Contact</label>
-            <input
-              type="text"
-              name="parent_contact"
-              value={formData.parent_contact}
-              onChange={handleChange}
-              className="w-full rounded-sm border border-line-strong bg-surface px-3 py-1.5 text-xs text-ink placeholder:text-ink-muted focus:border-accent focus:outline-hidden"
-              placeholder="e.g. 88 800 88 97"
-            />
+            <div>
+              <label className="block text-xs font-bold text-ink-muted mb-1">Ota-ona telefoni</label>
+              <input
+                type="text"
+                name="parent_contact"
+                value={formData.parent_contact}
+                onChange={handleChange}
+                className="w-full rounded-sm border border-line-strong bg-surface px-3 py-1.5 text-xs text-ink placeholder:text-ink-muted focus:border-accent focus:outline-hidden"
+                placeholder="masalan: 88 800 88 97"
+              />
+            </div>
           </div>
         </form>
 
@@ -170,7 +153,7 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
             disabled={saving}
             className="rounded-sm border border-line-strong px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-accent-soft active:scale-95 disabled:opacity-50 cursor-pointer"
           >
-            Cancel
+            Bekor qilish
           </button>
           <button
             type="button"
@@ -179,7 +162,7 @@ export function StudentEditModal({ student, groups, onClose, onSave }: StudentEd
             className="flex items-center gap-1.5 rounded-sm bg-accent px-5 py-2 text-xs font-bold text-accent-ink shadow-sm transition-all hover:bg-accent/90 active:scale-95 disabled:opacity-50 cursor-pointer"
           >
             <Save className="h-4 w-4" />
-            {saving ? 'Saving...' : 'Save Student'}
+            {saving ? 'Saqlanmoqda...' : 'O\'quvchini saqlash'}
           </button>
         </div>
       </div>

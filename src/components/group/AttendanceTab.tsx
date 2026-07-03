@@ -13,7 +13,7 @@ export function AttendanceTab({ groupId, date }: AttendanceTabProps) {
     useAttendance(groupId, date)
 
   if (loading) {
-    return <p className="px-4 py-6 text-sm text-ink-muted">Loading attendance…</p>
+    return <p className="px-4 py-6 text-sm text-ink-muted">Davomat yuklanmoqda…</p>
   }
 
   if (loadError) {
@@ -27,7 +27,7 @@ export function AttendanceTab({ groupId, date }: AttendanceTabProps) {
           onClick={() => void reload()}
           className="text-sm text-accent underline underline-offset-2"
         >
-          Try again
+          Qayta urinib ko'ring
         </button>
       </div>
     )
@@ -36,7 +36,7 @@ export function AttendanceTab({ groupId, date }: AttendanceTabProps) {
   if (students.length === 0) {
     return (
       <p className="px-4 py-6 text-sm text-ink-muted">
-        No active students in this group yet. Add students from the group menu.
+        Bu guruhda hali faol o'quvchilar yo'q. Guruh menyusidan o'quvchilar qo'shing.
       </p>
     )
   }
