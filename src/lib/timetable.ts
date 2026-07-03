@@ -9,54 +9,54 @@ export interface TimetableSlot {
 
 export const TIMETABLE: TimetableSlot[] = [
   // Monday
-  { groupName: 'B9', day: 'Monday', time: '10:00', room: 'Computer Room' },
-  { groupName: 'A6', day: 'Monday', time: '10:00', room: 'IT 1' },
-  { groupName: 'A16', day: 'Monday', time: '14:00', room: 'Computer Room' },
-  { groupName: 'A9', day: 'Monday', time: '14:00', room: 'IT 1' },
-  { groupName: 'A15', day: 'Monday', time: '16:00', room: 'Computer Room' },
-  { groupName: 'A12', day: 'Monday', time: '16:00', room: 'IT 2' },
+  { groupName: 'B9', day: 'Dushanba', time: '10:00', room: 'Computer Room' },
+  { groupName: 'A6', day: 'Dushanba', time: '10:00', room: 'IT 1' },
+  { groupName: 'A16', day: 'Dushanba', time: '14:00', room: 'Computer Room' },
+  { groupName: 'A9', day: 'Dushanba', time: '14:00', room: 'IT 1' },
+  { groupName: 'A15', day: 'Dushanba', time: '16:00', room: 'Computer Room' },
+  { groupName: 'A12', day: 'Dushanba', time: '16:00', room: 'IT 2' },
 
   // Wednesday
-  { groupName: 'B9', day: 'Wednesday', time: '10:00', room: 'Computer Room' },
-  { groupName: 'A6', day: 'Wednesday', time: '10:00', room: 'IT 1' },
-  { groupName: 'A16', day: 'Wednesday', time: '14:00', room: 'Computer Room' },
-  { groupName: 'A9', day: 'Wednesday', time: '14:00', room: 'IT 1' },
-  { groupName: 'A15', day: 'Wednesday', time: '16:00', room: 'Computer Room' },
-  { groupName: 'A12', day: 'Wednesday', time: '16:00', room: 'IT 2' },
+  { groupName: 'B9', day: 'Chorshanba', time: '10:00', room: 'Computer Room' },
+  { groupName: 'A6', day: 'Chorshanba', time: '10:00', room: 'IT 1' },
+  { groupName: 'A16', day: 'Chorshanba', time: '14:00', room: 'Computer Room' },
+  { groupName: 'A9', day: 'Chorshanba', time: '14:00', room: 'IT 1' },
+  { groupName: 'A15', day: 'Chorshanba', time: '16:00', room: 'Computer Room' },
+  { groupName: 'A12', day: 'Chorshanba', time: '16:00', room: 'IT 2' },
 
   // Friday
-  { groupName: 'B9', day: 'Friday', time: '10:00', room: 'Computer Room' },
-  { groupName: 'A6', day: 'Friday', time: '10:00', room: 'IT 1' },
-  { groupName: 'A16', day: 'Friday', time: '14:00', room: 'Computer Room' },
-  { groupName: 'A9', day: 'Friday', time: '14:00', room: 'IT 1' },
-  { groupName: 'A15', day: 'Friday', time: '16:00', room: 'Computer Room' },
-  { groupName: 'A12', day: 'Friday', time: '16:00', room: 'IT 2' },
+  { groupName: 'B9', day: 'Juma', time: '10:00', room: 'Computer Room' },
+  { groupName: 'A6', day: 'Juma', time: '10:00', room: 'IT 1' },
+  { groupName: 'A16', day: 'Juma', time: '14:00', room: 'Computer Room' },
+  { groupName: 'A9', day: 'Juma', time: '14:00', room: 'IT 1' },
+  { groupName: 'A15', day: 'Juma', time: '16:00', room: 'Computer Room' },
+  { groupName: 'A12', day: 'Juma', time: '16:00', room: 'IT 2' },
 
   // Tuesday
-  { groupName: 'B8', day: 'Tuesday', time: '10:00', room: 'Computer Room' },
-  { groupName: 'A13', day: 'Tuesday', time: '14:00', room: 'Computer Room' },
-  { groupName: 'A14', day: 'Tuesday', time: '15:00', room: 'Computer Room' },
-  { groupName: 'A10', day: 'Tuesday', time: '15:00', room: 'IT 1' },
+  { groupName: 'B8', day: 'Seshanba', time: '10:00', room: 'Computer Room' },
+  { groupName: 'A13', day: 'Seshanba', time: '14:00', room: 'Computer Room' },
+  { groupName: 'A14', day: 'Seshanba', time: '15:00', room: 'Computer Room' },
+  { groupName: 'A10', day: 'Seshanba', time: '15:00', room: 'IT 1' },
 
   // Thursday
-  { groupName: 'B8', day: 'Thursday', time: '10:00', room: 'Computer Room' },
-  { groupName: 'A13', day: 'Thursday', time: '14:00', room: 'Computer Room' },
-  { groupName: 'A14', day: 'Thursday', time: '15:00', room: 'Computer Room' },
-  { groupName: 'A10', day: 'Thursday', time: '15:00', room: 'IT 1' },
+  { groupName: 'B8', day: 'Payshanba', time: '10:00', room: 'Computer Room' },
+  { groupName: 'A13', day: 'Payshanba', time: '14:00', room: 'Computer Room' },
+  { groupName: 'A14', day: 'Payshanba', time: '15:00', room: 'Computer Room' },
+  { groupName: 'A10', day: 'Payshanba', time: '15:00', room: 'IT 1' },
 
   // Saturday
-  { groupName: 'B8', day: 'Saturday', time: '10:00', room: 'Computer Room' },
-  { groupName: 'A13', day: 'Saturday', time: '14:00', room: 'Computer Room' },
-  { groupName: 'A14', day: 'Saturday', time: '15:00', room: 'Computer Room' },
-  { groupName: 'A10', day: 'Saturday', time: '15:00', room: 'IT 1' },
+  { groupName: 'B8', day: 'Shanba', time: '10:00', room: 'Computer Room' },
+  { groupName: 'A13', day: 'Shanba', time: '14:00', room: 'Computer Room' },
+  { groupName: 'A14', day: 'Shanba', time: '15:00', room: 'Computer Room' },
+  { groupName: 'A10', day: 'Shanba', time: '15:00', room: 'IT 1' },
 ]
 
 export function getDayOfWeek(dateStr: string): string {
   const parts = dateStr.split('-').map(Number)
-  if (parts.length !== 3) return 'Sunday'
-  // Date constructor takes 0-based month, local timezone construction avoids offset issues
+  if (parts.length !== 3) return 'Yakshanba'
   const dateObj = new Date(parts[0], parts[1] - 1, parts[2])
-  return dateObj.toLocaleDateString('en-US', { weekday: 'long' })
+  const days = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba']
+  return days[dateObj.getDay()]
 }
 
 export function getNowGroup(
