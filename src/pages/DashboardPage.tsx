@@ -35,7 +35,9 @@ export function DashboardPage() {
       .then((data) => {
         setGroups(data)
       })
+      .catch(() => {
         setError('Guruhlarni yuklab bo\'lmadi. Aloqani tekshiring.')
+      })
       .finally(() => {
         setLoading(false)
       })

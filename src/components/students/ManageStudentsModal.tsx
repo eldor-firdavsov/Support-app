@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { X } from 'lucide-react'
 import { useStudentManagement } from '@/hooks/useStudentManagement'
-import type { EntityStatus, Student } from '@/types'
+import type { Student } from '@/types'
 
 interface ManageStudentsModalProps {
   groupId: string

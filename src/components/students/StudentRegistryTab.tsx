@@ -22,7 +22,6 @@ export function StudentRegistryTab() {
   // Filters and search
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedGroup, setSelectedGroup] = useState('all')
-  const [selectedStatus, setSelectedStatus] = useState('all')
 
   // Modals & Expansion
   const [editingStudent, setEditingStudent] = useState<Student | null>(null)
@@ -83,21 +82,6 @@ export function StudentRegistryTab() {
     setExpandedStudentId((prev) => (prev === studentId ? null : studentId))
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'active':
-        return 'bg-present/10 text-present border border-present/20'
-      case 'left':
-        return 'bg-absent/10 text-absent border border-absent/20'
-      case 'on hold':
-        return 'bg-ink-muted/10 text-ink-muted border border-ink-muted/20'
-      case 'completed':
-      case 'finished':
-        return 'bg-accent/10 text-accent border border-accent/20'
-      default:
-        return 'bg-ink-muted/10 text-ink-muted border border-ink-muted/20'
-    }
-  }
 
   return (
     <div className="space-y-6 p-4">
