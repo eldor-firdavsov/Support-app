@@ -48,7 +48,7 @@ export function DashboardPage() {
       .then((data) => {
         setAbsenceCount(data.length)
       })
-      .catch(() => {})
+      .catch(() => { })
   }
 
   useEffect(() => {
@@ -116,22 +116,20 @@ export function DashboardPage() {
               <button
                 type="button"
                 onClick={() => setFilterMode('today')}
-                className={`rounded-sm px-3 py-1 text-xs font-semibold transition-all cursor-pointer ${
-                  filterMode === 'today'
+                className={`rounded-sm px-3 py-1 text-xs font-semibold transition-all cursor-pointer ${filterMode === 'today'
                     ? 'bg-accent text-accent-ink shadow-sm'
                     : 'text-ink-muted hover:text-ink'
-                }`}
+                  }`}
               >
                 Bugun
               </button>
               <button
                 type="button"
                 onClick={() => setFilterMode('all')}
-                className={`rounded-sm px-3 py-1 text-xs font-semibold transition-all cursor-pointer ${
-                  filterMode === 'all'
+                className={`rounded-sm px-3 py-1 text-xs font-semibold transition-all cursor-pointer ${filterMode === 'all'
                     ? 'bg-accent text-accent-ink shadow-sm'
                     : 'text-ink-muted hover:text-ink'
-                }`}
+                  }`}
               >
                 Barchasi
               </button>
@@ -158,11 +156,10 @@ export function DashboardPage() {
         <button
           type="button"
           onClick={() => setActiveTab('groups')}
-          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-            activeTab === 'groups'
+          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${activeTab === 'groups'
               ? 'border-accent text-accent'
               : 'border-transparent text-ink-muted hover:text-ink'
-          }`}
+            }`}
         >
           <GraduationCap className="h-4 w-4" />
           Guruhlar va jadvallar
@@ -170,11 +167,10 @@ export function DashboardPage() {
         <button
           type="button"
           onClick={() => setActiveTab('students')}
-          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-            activeTab === 'students'
+          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${activeTab === 'students'
               ? 'border-accent text-accent'
               : 'border-transparent text-ink-muted hover:text-ink'
-          }`}
+            }`}
         >
           <Users className="h-4 w-4" />
           O'quvchilarni qidirish
@@ -182,11 +178,10 @@ export function DashboardPage() {
         <button
           type="button"
           onClick={() => setActiveTab('absences')}
-          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-            activeTab === 'absences'
+          className={`flex items-center gap-2 border-b-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${activeTab === 'absences'
               ? 'border-accent text-accent'
               : 'border-transparent text-ink-muted hover:text-ink'
-          }`}
+            }`}
         >
           <Clock className="h-4 w-4" />
           Davomat ogohlantirishlari

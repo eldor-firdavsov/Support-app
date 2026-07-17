@@ -32,10 +32,10 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
       return
     }
 
-    // Validate format: A or B followed by one or more digits (e.g., A6, B12)
-    const regex = /^[AB]\d+$/
+    // Validate format: A, B, or R followed by one or more digits (e.g., A6, B12, R1)
+    const regex = /^[ABR]\d+$/
     if (!regex.test(trimmed)) {
-      setError('Guruh nomi A yoki B harfi va raqamdan iborat bo\'lishi kerak (masalan: A11, B4).')
+      setError('Guruh nomi A, B yoki R harfi va raqamdan iborat bo\'lishi kerak (masalan: A11, B4, R1).')
       return
     }
 
@@ -97,7 +97,7 @@ export function AddGroupModal({ existingGroups, onClose, onAdded }: AddGroupModa
                 setName(e.target.value)
                 setError(null)
               }}
-              placeholder="e.g. A11, B4"
+              placeholder="e.g. A11, B4, R1"
               className="w-full rounded-sm border border-line-strong bg-surface px-2.5 py-1.5 text-sm text-ink outline-none focus-visible:border-accent"
               autoFocus
             />

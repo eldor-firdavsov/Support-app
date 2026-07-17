@@ -30,9 +30,9 @@ export async function fetchActiveGroups(): Promise<Group[]> {
     studentCounts[s.group_id] = (studentCounts[s.group_id] || 0) + 1
   })
 
-  // Filter for A and B groups only, which have at least one active student
+  // Filter for A, B, and R groups only, which have at least one active student
   const filtered = groups.filter(
-    (g) => (g.name.startsWith('A') || g.name.startsWith('B')) && activeGroupIds.has(g.id)
+    (g) => (g.name.startsWith('A') || g.name.startsWith('B') || g.name.startsWith('R')) && activeGroupIds.has(g.id)
   )
 
   const mapped = filtered.map((g) => ({

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
-import { currentMonthIso, todayIso } from '@/lib/dates'
+import { todayIso } from '@/lib/dates'
 
 const MONTH_KEY = 'support-teacher:selected-month'
 const DATE_KEY = 'support-teacher:selected-date'
@@ -13,14 +13,35 @@ interface SessionFilterContextValue {
 
 const SessionFilterContext = createContext<SessionFilterContextValue | undefined>(undefined)
 
-function readInitial(key: string, fallback: string): string {
+function readFromStorage(key: string, fallback: string): string {
   if (typeof window === 'undefined') return fallback
   return window.localStorage.getItem(key) ?? fallback
 }
 
+/**
+ * Har kuni ilova ochilganda bugungi sanani avtomatik ko'rsatadi.
+ * Agar LocalStorage da saqlangan sana bugundan farqli bo'lsa (kechagi yoki
+ * kelajak), bugungi sana va bugungi oy qaytariladi.
+ */
+function resolveInitial(): { date: string; month: string } {
+  const today = todayIso()
+  const todayMonth = today.slice(0, 7)
+
+  const savedDate = readFromStorage(DATE_KEY, today)
+  const savedMonth = readFromStorage(MONTH_KEY, todayMonth)
+
+  // Agar saqlangan sana bugundan farqli bo'lsa → bugungi sana va oyni qaytaramiz
+  if (savedDate !== today) {
+    return { date: today, month: todayMonth }
+  }
+
+  return { date: savedDate, month: savedMonth }
+}
+
 export function SessionFilterProvider({ children }: { children: ReactNode }) {
-  const [month, setMonthState] = useState(() => readInitial(MONTH_KEY, currentMonthIso()))
-  const [date, setDateState] = useState(() => readInitial(DATE_KEY, todayIso()))
+  const initial = resolveInitial()
+  const [month, setMonthState] = useState(initial.month)
+  const [date, setDateState] = useState(initial.date)
 
   function setMonth(next: string) {
     setMonthState(next)
